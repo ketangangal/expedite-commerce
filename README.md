@@ -1,45 +1,36 @@
 # expedite-commerce
+This is a multi-agent system for analyzing customer feedback and summarizing actionable insights.
 
 ## Architecture Diagram 
-## Overview
 
-### Agents
-| Agent Request | Description |
-|-----------------|-------------|
-| Master Agent | Analyze customer feedback to and response to customer |
-| Sub Agent | Analyze customer feedback and instructions and call tools |
+### Code Flow - 1
+![Architecture Diagram](img/agentflow.png)
 
-### Tools
-| Tool Request | Description |
-|-----------------|-------------|
-| Sentiment Analysis | Analyze customer feedback to identify trends and areas for improvement |
-| Keyword Extraction | Extract keywords from customer feedback |
-| Summary | Summarize customer feedback |
-| Topic Categorization | Categorize customer feedback into predefined topics |
+### Code Flow - 2
+![Architecture Diagram](img/code-flow.png)
 
-### Security
-| Security Request | Description |
-|-----------------|-------------|
-| Security Check | Check if the request is secure using guardrails |
-
-### Cache
-| Cache Request | Description |
-|-----------------|-------------|
-| Cache Check | Check if the request is cached using DynamoDB |
-| Cache Store | Store the request in the cache using DynamoDB |
-| Cache Retrieve | Retrieve the request from the cache using DynamoDB |
-
-### Cloudwatch Monitoring
-| Cloudwatch Request | Description |
-|-----------------|-------------|
-| Cloudwatch Log | Log the calls to cloudwatch |
+## Cloud Architecture
+![Architecture Diagram](img/image.png)
 
 
-## API
-| API Request | Description |
-|-----------------|-------------|
-| API Call | Call the FastAPI application | 
-| Batch API Call | Call the FastAPI application in batch |
+## ✅ Requirements  
+
+| ⚡ Feature | 📌 Description |
+|-----------|--------------|
+| 📝 **Input Format** | Accepts **JSON** input with customer feedback and optional **instructions**. |
+| 🤖 **Multi-Agent System** | 🎭 **User Agent**: Handles interaction & guardrails. <br> 🛠 **Tool Agent**: Executes required tools dynamically. |
+| 🔄 **Dynamic Tool Selection** | Uses **LLM** (AWS Bedrock, Groq, OpenAI) to decide which tools to execute. |
+| 🛠 **Tools** | ✅ **Sentiment Analysis** (Positive, Negative, Neutral) <br> ✅ **Topic Categorization** (Product, Delivery, Support) <br> ✅ **Keyword Extraction** (Context-aware keywords) <br> ✅ **Summarization** (Concise insights & actions) |
+| 💾 **Caching** | Stores processed results to **avoid redundant execution**. (DynamoDB optional) |
+| ☁️ **AWS Integration** | 🚀 **AWS Lambda** for execution <br> 📂 **DynamoDB** for storage (optional) <br> 📊 **CloudWatch** for monitoring |
+| 📈 **Monitoring & Logs** | Logs **LLM decisions, tool execution, and cache performance** in CloudWatch. |
+| ⚠️ **Error Handling** | Defaults to **executing all tools** if instructions are invalid. |
+| 🌟 **Advanced Features (Extra Credit)** | 🧠 **Instruction Interpretation** (understands complex tasks) <br> 🚀 **Batch Processing** (handles up to **50 records per request**) |
+
+---
+
+### API Schemas
+
 
 ### Single Invoke
 ```json
@@ -71,7 +62,14 @@
 }
 ```
 
-## Deployment
-Deploy the FastAPI application using AWS Lambda and API Gateway.
+## Cost Analysis
+ 
 
+| Service       | Pricing Model                                      | Estimated Cost Considerations                          |
+|--------------|-------------------------------------------------|-------------------------------------------------------|
+| AWS Lambda   | $0.00001667 per GB-second + $0.20 per 1M requests | Cost depends on execution time, memory, and number of requests. |
+| CloudWatch   | $0.30 per GB logs ingestion + $0.01 per 1K metrics | Logging and monitoring increase cost with more data & queries. |
+| DynamoDB     | $0.25 per GB storage + $1.25 per 1M writes + $0.25 per 1M reads | Cost varies with data size and request volume. |
+| API Gateway  | $3.50 per 1M requests (REST API)                  | Additional charges for data transfer and caching. |
 
+---

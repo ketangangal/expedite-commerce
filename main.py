@@ -2,12 +2,12 @@ import hashlib
 import uvicorn
 from fastapi import FastAPI
 from config import llm_config
-from agents import master_agent
-from tool_schemas import SubAgent
-from utils import generate_function_schema
-from gatekeeper import security_check
-from cache import retrieve_feedback_cache, store_feedback_cache
-from cw_logger import setup_cloudwatch_logger
+from core.agents import master_agent
+from tools.tool_schemas import SubAgent
+from utils.utils import generate_function_schema
+from guard.gatekeeper import security_check
+from cache.cache import retrieve_feedback_cache, store_feedback_cache
+from customLogger.cw_logger import setup_cloudwatch_logger
 
 
 from pydantic import BaseModel

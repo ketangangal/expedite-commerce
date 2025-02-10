@@ -1,12 +1,12 @@
 import json
-from utils import generate_function_schema
-from tools import *
-from tool_schemas import *
+from utils.utils import generate_function_schema
+from tools.tools import *
+from tools.tool_schemas import *
 
 
 class ToolExecutor:
     def __init__(self, config: dict) -> None:
-        from agents import sub_agent
+        from core.agents import sub_agent
         self.config = config
         self.tools = [
             (SubAgent, sub_agent),
