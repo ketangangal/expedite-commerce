@@ -1,18 +1,6 @@
 # expedite-commerce
 Design and implement a smart LLM-driven multi agent solution capable of having guardrail & dynamically deciding which tools to execute based on specific instructions.
 
-## Architecture Diagram 
-
-### Code Flow - 1
-![Architecture Diagram](img/agentflow.png)
-
-### Code Flow - 2
-![Architecture Diagram](img/code-flow.png)
-
-## Cloud Architecture
-![Architecture Diagram](img/image.png)
-
-
 ## ✅ Requirements  
 
 | ⚡ Feature | 📌 Description |
@@ -28,6 +16,17 @@ Design and implement a smart LLM-driven multi agent solution capable of having g
 | 🌟 **Advanced Features (Extra Credit)** | 🧠 **Instruction Interpretation** (understands complex tasks) <br> 🚀 **Batch Processing** (handles up to **50 records per request**) |
 
 ---
+
+## Architecture Diagram 
+
+### Code Flow - 1
+![Architecture Diagram](img/agentflow.png)
+
+### Code Flow - 2
+![Architecture Diagram](img/code-flow.png)
+
+## Cloud Architecture
+![Architecture Diagram](img/image.png)
 
 ### API Schemas
 
