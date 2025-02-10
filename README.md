@@ -1,7 +1,7 @@
 # expedite-commerce
 Design and implement a smart LLM-driven multi agent solution capable of having guardrail & dynamically deciding which tools to execute based on specific instructions.
 
-## ✅ Requirements  
+## Requirements  
 
 | ⚡ Feature | 📌 Description |
 |-----------|--------------|
@@ -15,7 +15,6 @@ Design and implement a smart LLM-driven multi agent solution capable of having g
 | ⚠️ **Error Handling** | Defaults to **executing all tools** if instructions are invalid. |
 | 🌟 **Advanced Features (Extra Credit)** | 🧠 **Instruction Interpretation** (understands complex tasks) <br> 🚀 **Batch Processing** (handles up to **50 records per request**) |
 
----
 
 ## Architecture Diagram 
 
