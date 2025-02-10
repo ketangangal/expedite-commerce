@@ -1,5 +1,5 @@
 # expedite-commerce
-This is a multi-agent system for analyzing customer feedback and summarizing actionable insights.
+Design and implement a smart LLM-driven multi agent solution capable of having guardrail & dynamically deciding which tools to execute based on specific instructions.
 
 ## Architecture Diagram 
 
