@@ -9,11 +9,12 @@ Design and implement a smart LLM-driven multi agent solution capable of having g
 | 🤖 **Multi-Agent System** | 🎭 **User Agent**: Handles interaction & guardrails. <br> 🛠 **Tool Agent**: Executes required tools dynamically. |
 | 🔄 **Dynamic Tool Selection** | Uses **LLM** (AWS Bedrock, Groq, OpenAI) to decide which tools to execute. |
 | 🛠 **Tools** | ✅ **Sentiment Analysis** (Positive, Negative, Neutral) <br> ✅ **Topic Categorization** (Product, Delivery, Support) <br> ✅ **Keyword Extraction** (Context-aware keywords) <br> ✅ **Summarization** (Concise insights & actions) |
-| 💾 **Caching** | Stores processed results to **avoid redundant execution**. (DynamoDB optional) |
+| 💾 **Caching** | Stores processed results to avoid redundant execution. (DynamoDB optional) |
+| 🛡 **Guardrails** | Ensures safe interactions by filtering harmful content and enforcing compliance. |
 | ☁️ **AWS Integration** | 🚀 **AWS Lambda** for execution <br> 📂 **DynamoDB** for storage (optional) <br> 📊 **CloudWatch** for monitoring |
 | 📈 **Monitoring & Logs** | Logs **LLM decisions, tool execution, and cache performance** in CloudWatch. |
 | ⚠️ **Error Handling** | Defaults to **executing all tools** if instructions are invalid. |
-| 🌟 **Advanced Features (Extra Credit)** | 🧠 **Instruction Interpretation** (understands complex tasks) <br> 🚀 **Batch Processing** (handles up to **50 records per request**) |
+| 🌟 **Advanced Features** | 🧠 **Instruction Interpretation** (understands complex tasks) <br> 🚀 **Batch Processing** (handles up to **50 records per request**) |
 
 
 ## Architecture Diagram 
