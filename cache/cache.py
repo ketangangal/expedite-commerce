@@ -7,9 +7,7 @@ from datetime import datetime
 def store_feedback_cache(feedback_id, cache_key, cached_result, logger):
     try:
         TABLE_NAME = "FeedbackCache"
-        dynamodb = boto3.client("dynamodb", region_name="us-east-1",
-                                aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-                                aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"))
+        dynamodb = boto3.client("dynamodb", region_name="us-east-1")
         
         last_updated = datetime.now().isoformat()
         ttl = int(datetime.now().timestamp()) + 60  # 1 minute
@@ -32,9 +30,7 @@ def retrieve_feedback_cache(feedback_id: str, cache_key=None, logger=None):
     try:
         TABLE_NAME = "FeedbackCache"
 
-        dynamodb = boto3.client("dynamodb", region_name="us-east-1",
-                                aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-                                aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"))
+        dynamodb = boto3.client("dynamodb", region_name="us-east-1")
         
         if cache_key:
             response = dynamodb.get_item(

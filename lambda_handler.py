@@ -71,17 +71,46 @@ def batch_invoke(requests: list):
     return responses
 
 def lambda_handler(event, context):
-    stream = event.get("stream", False)
-    request = event.get("request", None)
-    if stream == "SingleInvoke":
-        response = invoke(Request(**request))
-        return {'statusCode': 200, 'body': json.dumps(response)}
+    body = json.loads(event.get("body", "{'stream': False, 'request': None}"))
+    if event["path"] == "/handshake" and event["httpMethod"] == "GET":
+        return {
+            "statusCode": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": json.dumps({"message": "Handshake successful"})
+        }
+        
+    if event["path"] == "/invoke-agent" and event["httpMethod"] == "POST":
+        stream = body.get("stream", False)
+        request = body.get("request", None)
+        if stream == "SingleInvoke":
+            response = invoke(Request(**request))
+            return {
+                "statusCode": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": json.dumps(response)
+            }
 
-    elif stream == 'BatchInvoke':
-        logger.info(f"Received batch request for {len(request)} requests")
-        output = batch_invoke(requests=event["request"])
-        return {"message": "Batch request processed successfully", "output": output}
+        elif stream == 'BatchInvoke':
+            logger.info(f"Received batch request for {len(request)} requests")
+            output = batch_invoke(requests=request)
+            return {
+                "statusCode": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": json.dumps({"message": "Batch request processed successfully", "output": output})
+            }
 
-    else:
-        logger.error(f"Invalid request: {event}")
-        return {"error": "Invalid request"}
+        else:
+            logger.error(f"Invalid request: {event}")
+            return {
+                "statusCode": 400,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": json.dumps({"message": "Invalid request"})
+            }
