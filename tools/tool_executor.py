@@ -5,6 +5,9 @@ from tools.tool_schemas import *
 
 
 class ToolExecutor:
+    """
+    This class is responsible for executing the tools.
+    """
     def __init__(self, config: dict) -> None:
         from core.agents import sub_agent
         self.config = config

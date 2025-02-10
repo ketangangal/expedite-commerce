@@ -3,6 +3,10 @@ from litellm import completion
 
 # Master Agent
 def master_agent(input_request: dict, tools: list, config: dict, logger=None):
+    """
+    This is the master agent that handles general user interactions, greetings, and generic inquiries.
+    When the user provides instructions or mentions product-related details, it delegates the task to a specialized sub-agent.
+    """
     try:
         # This is master agent Prompt
         prompt = """You are a master agent responsible for handling general user interactions, greetings, and generic inquiries. 
@@ -58,6 +62,9 @@ def master_agent(input_request: dict, tools: list, config: dict, logger=None):
 
 # Sub Agent
 def sub_agent(input_request: dict, tools: list, config: dict, logger=None):
+    """
+    This is the sub-agent that handles specific tasks related to product-related details.
+    """
     try:
         logger.info(f"Sub Agent initiated for feedback_id: {input_request.get('feedback_id', 'N/A')}")
         prompt = """You are a specialized sub-agent equipped with four tools:  

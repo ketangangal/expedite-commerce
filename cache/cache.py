@@ -5,6 +5,9 @@ from datetime import datetime
 
 
 def store_feedback_cache(feedback_id, cache_key, cached_result, logger):
+    """
+    Store the feedback cache in the DynamoDB table.
+    """
     try:
         TABLE_NAME = "FeedbackCache"
         dynamodb = boto3.client("dynamodb", region_name="us-east-1")
@@ -27,6 +30,9 @@ def store_feedback_cache(feedback_id, cache_key, cached_result, logger):
         logger.error(f"Error storing feedback cache for feedback_id: {feedback_id} with cache_key: {cache_key} with error: {e}")
 
 def retrieve_feedback_cache(feedback_id: str, cache_key=None, logger=None):
+    """
+    Retrieve the feedback cache from the DynamoDB table.
+    """
     try:
         TABLE_NAME = "FeedbackCache"
 
@@ -46,7 +52,7 @@ def retrieve_feedback_cache(feedback_id: str, cache_key=None, logger=None):
                         "cached_result": json.loads(response["Item"]["cached_result"]["S"]),
                         "last_updated": response["Item"]["last_updated"]["S"]
                     }
-                }  # Return cached result
+                }
             return None
         
         else:

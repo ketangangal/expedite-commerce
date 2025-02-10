@@ -44,6 +44,9 @@ def parse_guardrail_response(response: dict, logger=None) -> dict:
 
 
 def security_check(text: str, logger=None) -> dict:
+    """
+    Check the security of the text using the Bedrock guardrail.
+    """
     try:
         bedrock = client(
             "bedrock-runtime", 
